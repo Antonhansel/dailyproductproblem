@@ -178,7 +178,8 @@ input {
 
 /* HEADER SECTION */
 #h {
-	background: url(../img/header.jpg) no-repeat center top;
+	background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(../img/desktop_image.jpg) no-repeat center top;
+	/* background: url(../img/desktop_image.jpg) no-repeat center top; */
 	padding-top: 180px;
 	text-align:center;
 	background-attachment: relative;
@@ -235,12 +236,12 @@ input {
 
 /* SEP */
 #sep {
-	background: url(../img/sep.jpg) no-repeat center top;
-	padding-top: 90px;
+	background: linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7) ), url(../img/paper_image.jpg) no-repeat center top;
+	padding-top: 70px;
 	text-align:center;
 	background-attachment: relative;
 	background-position: center center;
-	min-height: 450px;
+	min-height: 370px;
 	width: 100%;
 	color: white;
 	
