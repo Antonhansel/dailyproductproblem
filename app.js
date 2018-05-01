@@ -30,8 +30,12 @@ if (!isProduction) {
   app.use(errorhandler())
 }
 
-mongoose.connect('mongodb://localhost/dailyproductproblem')
-mongoose.set('debug', true)
+if (isProduction) {
+  mongoose.connect(process.env.MONGODB_URI)
+} else {
+  mongoose.connect('mongodb://localhost/dailyproductproblem')
+  mongoose.set('debug', true)
+}
 
 require('./models/User')
 require('./config/passport')
