@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="assets/img/favicon.ico">
+
+    <title>DailyProductProblem</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="assets/css/ionicons.min.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
+    <script src="https://checkout.stripe.com/checkout.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.4/fetch.min.js"></script>
+    <script
+    src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E="
+    crossorigin="anonymous"></script>
+
+    <script>
+        var search = decodeURIComponent( window.location.href.slice( window.location.href.indexOf( '?' ) + 1 ) );
+        const email = search.split('=')[1];
+        var handler = StripeCheckout.configure({
+        key: 'pk_test_GhAeUOf49HGaUZD9D08254oK',
+        image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
+        locale: 'fr',
+        token: function(token) {
+            // You can access the token ID with `token.id`.
+            // Get the token ID to your server-side code for use.
+            console.log(token);
+            window.fetch('/api/payment', {
+                method: 'POST',
+                body: JSON.stringify(token),
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-Requested-With': 'XMLHttpRequest'
+                },
+            })
+        }
+        });
+
+        handler.open({
+            name: 'DailyProductProblem',
+            description: 'Devenir Product Owner !',
+            zipCode: true,
+            amount: 1000,
+            currency: 'eur',
+            email: email,
+        });
+        
+        // Close Checkout on page navigation:
+        window.addEventListener('popstate', function() {
+        handler.close();
+        });
+    </script>
+  </body>
+</html>

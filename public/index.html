@@ -44,10 +44,8 @@
               <!-- <br/>Recevez chaque jour une nouvelle notion pour progresser! -->
             </h1>
             <div class="mtb">
-              <form role="form" action="register.php" method="post" enctype="plain"> 
-                <input type="email" name="email" class="subscribe-input" placeholder="Entrez votre addresse mail..." required>
-                <button class='btn btn-conf btn-green' type="submit">Commencer !</button>
-              </form>
+              <input id="emailInput" type="email" name="email" class="subscribe-input" placeholder="Entrez votre addresse mail..." required>
+              <button id="submitEmail" class='btn btn-conf btn-green' type="submit">Commencer !</button>
             </div><!--/mt-->
             <h6>3 jours d'essai, pas besoin de carte de crédit !</h6>
           </div>
@@ -125,8 +123,8 @@
           <div class="col-md-8 col-md-offset-2 centered">
           <div class="mtb">
               <form role="form" action="register.php" method="post" enctype="plain"> 
-                <input type="email" name="email" class="subscribe-input" placeholder="Entrez votre addresse mail..." required>
-                <button class='btn btn-conf btn-green' type="submit">Commencer !</button>
+                <input id="emailInput" type="email" name="email" class="subscribe-input" placeholder="Entrez votre addresse mail..." required>
+                <button id="submitEmail" class='btn btn-conf btn-green' type="submit">Commencer !</button>  
               </form>
             </div><!--/mt-->
             <h6>3 jours d'essai, pas besoin de carte de crédit !</h6>
@@ -141,5 +139,19 @@
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
     <script src="assets/js/retina-1.1.0.js"></script>
+    <script src="https://checkout.stripe.com/checkout.js"></script>
+    <script>
+      $("#submitEmail").click(() => {
+        var email = $('#emailInput').val();
+        window.fetch('/api/register', {
+        method: 'POST',
+        body: JSON.stringify({email: email}),
+        headers: {
+            'Content-Type': 'application/json',
+            'X-Requested-With': 'XMLHttpRequest'
+          },
+        })
+      });
+    </script>
   </body>
 </html>
