@@ -122,16 +122,30 @@
           </p> -->
           <div class="col-md-8 col-md-offset-2 centered">
           <div class="mtb">
-              <form role="form" action="register.php" method="post" enctype="plain"> 
-                <input id="emailInput" type="email" name="email" class="subscribe-input" placeholder="Entrez votre addresse mail..." required>
-                <button id="submitEmail" class='btn btn-conf btn-green' type="submit">Commencer !</button>  
-              </form>
-            </div><!--/mt-->
+            <input id="emailInputBottom" type="email" name="email" class="subscribe-input" placeholder="Entrez votre addresse mail..." required>
+            <button id="submitEmailBottom" class='btn btn-conf btn-green' type="submit">Commencer !</button>  
+          </div><!--/mt-->
             <h6>3 jours d'essai, pas besoin de carte de crédit !</h6>
           </div>
         </div><!--/row-->
       </div><!--/container-->
     </div><!--/F-->
+
+    <!-- Magie noire -->
+    <button id="modal-toggle-btn" style="display:none" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+      Launch demo modal
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+            L'aventure commence ! Dans quelques minutes vous recevrez un mail détaillant le programme. À tout de suite ;)
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
@@ -151,6 +165,21 @@
             'X-Requested-With': 'XMLHttpRequest'
           },
         })
+        $("#modal-toggle-btn").click();
+        $("#emailInput").val('');
+      });
+      $("#submitEmailBottom").click(() => {
+        var email = $('#emailInputBottom').val();
+        window.fetch('/api/register', {
+        method: 'POST',
+        body: JSON.stringify({email: email}),
+        headers: {
+            'Content-Type': 'application/json',
+            'X-Requested-With': 'XMLHttpRequest'
+          },
+        })
+        $("#modal-toggle-btn").click();
+        $("#emailInputBottom").val('');
       });
     </script>
   </body>
