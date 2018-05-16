@@ -122,11 +122,9 @@
           </p> -->
           <div class="col-md-8 col-md-offset-2 centered">
           <div class="mtb">
-              <form role="form" action="register.php" method="post" enctype="plain"> 
-                <input id="emailInput" type="email" name="email" class="subscribe-input" placeholder="Entrez votre addresse mail..." required>
-                <button id="submitEmail" class='btn btn-conf btn-green' type="submit">Commencer !</button>  
-              </form>
-            </div><!--/mt-->
+            <input id="emailInputBottom" type="email" name="email" class="subscribe-input" placeholder="Entrez votre addresse mail..." required>
+            <button id="submitEmailBottom" class='btn btn-conf btn-green' type="submit">Commencer !</button>  
+          </div><!--/mt-->
             <h6>3 jours d'essai, pas besoin de carte de crédit !</h6>
           </div>
         </div><!--/row-->
@@ -143,6 +141,17 @@
     <script>
       $("#submitEmail").click(() => {
         var email = $('#emailInput').val();
+        window.fetch('/api/register', {
+        method: 'POST',
+        body: JSON.stringify({email: email}),
+        headers: {
+            'Content-Type': 'application/json',
+            'X-Requested-With': 'XMLHttpRequest'
+          },
+        })
+      });
+      $("#submitEmailBottom").click(() => {
+        var email = $('#emailInputBottom').val();
         window.fetch('/api/register', {
         method: 'POST',
         body: JSON.stringify({email: email}),
