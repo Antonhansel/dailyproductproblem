@@ -131,6 +131,22 @@
       </div><!--/container-->
     </div><!--/F-->
 
+    <!-- Magie noire -->
+    <button id="modal-toggle-btn" style="display:none" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+      Launch demo modal
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+            L'aventure commence ! Dans quelques minutes vous recevrez un mail détaillant le programme. À tout de suite ;)
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
@@ -149,6 +165,8 @@
             'X-Requested-With': 'XMLHttpRequest'
           },
         })
+        $("#modal-toggle-btn").click();
+        $("#emailInput").val('');
       });
       $("#submitEmailBottom").click(() => {
         var email = $('#emailInputBottom').val();
@@ -160,6 +178,8 @@
             'X-Requested-With': 'XMLHttpRequest'
           },
         })
+        $("#modal-toggle-btn").click();
+        $("#emailInputBottom").val('');
       });
     </script>
   </body>
